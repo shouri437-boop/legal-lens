@@ -4,6 +4,10 @@
 
 Built for the Hacknex hackathon.
 
+**Live frontend:** <https://legal-lens-seven-iota.vercel.app>
+
+> The Vercel deployment hosts the **frontend only**. The backend (FastAPI, Postgres, in-memory SSE state) is not deployed there, so analysis, uploads and chat will not work on the live site. To use the full app, run it locally ([Quick start](#quick-start)) or deploy the backend with [Terraform](#deployment) and set `NEXT_PUBLIC_API_URL` in Vercel.
+
 > **Status: hackathon prototype.** It runs end to end on a laptop, but it is single-instance, has no automated tests, and runs with authentication switched off locally. See [Known limitations](#known-limitations) before deploying it anywhere shared.
 
 ---
