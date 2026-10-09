@@ -273,3 +273,5 @@ DOCS/reference/epstein-network-ui/Epstein-doc-explorer
 backend/storage/
 *.err
 tsconfig.tsbuildinfo
+
+.vercel
