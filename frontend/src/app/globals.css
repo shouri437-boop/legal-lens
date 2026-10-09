@@ -1,0 +1,942 @@
+@import "tailwindcss";
+
+/* ============================================================
+   TAILWIND V4 DARK MODE CONFIGURATION
+   ============================================================
+   Configure dark mode to use class selector strategy.
+   Works with next-themes which adds .dark/.light to html element.
+   ============================================================ */
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   DESIGN TOKENS - Legal Lens Design System
+   ============================================================
+   Core color palette, typography, and glass effect tokens.
+   Uses Tailwind v4's @theme directive for native utility generation.
+   ============================================================ */
+
+@theme {
+  /* Core Color Palette - Dark Mode (Default) */
+  --color-charcoal: #1b1e20;
+  --color-jet: #25292b;
+  --color-smoke: #e6e3dc;
+  --color-stone: #8f958f;
+
+  /* Cream Accent */
+  --color-accent: #b7c2b8;
+  --color-accent-muted: #9aa89d;
+
+  /* Glass Effect Colors */
+  --color-glass-light: rgba(230, 227, 220, 0.05);
+  --color-glass-dark: rgba(27, 30, 32, 0.85);
+
+  /* Shadows */
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.25);
+  --shadow-glass-hover: 0 12px 40px rgba(0, 0, 0, 0.3);
+  --shadow-glow-accent: 0 0 40px rgba(248, 247, 244, 0.08);
+
+  /* Ethereal Shadow */
+  --color-shadow: rgba(70, 68, 64, 0.85);
+
+  /* Semantic Colors */
+  --color-error: #c08877;
+
+  /* Light Mode Palette - Following LIGHT-MODE-REFERENCE.MD */
+  --color-cream: #eeebe5;
+  --color-warm-white: #e4e0d8;
+  --color-charcoal-light: #2e3236;
+  --color-warm-gray: #747a76;
+  --color-accent-light: #4f6358;
+  --color-accent-muted-light: #6b7f72;
+
+  /* Light Mode Glass Colors */
+  --color-glass-light-mode: rgba(26, 24, 22, 0.04);
+  --color-glass-medium-light: rgba(26, 24, 22, 0.08);
+
+  /* Light Mode Shadows */
+  --shadow-glass-light: 0 8px 32px rgba(26, 24, 22, 0.08);
+  --shadow-glass-hover-light: 0 12px 40px rgba(26, 24, 22, 0.12);
+  --shadow-subtle-light: 0 1px 3px rgba(26, 24, 22, 0.06);
+
+
+  /* Muted palette: remap Tailwind's saturated ramps to desaturated tones */
+  --color-red-50: #f6ece8;
+  --color-red-100: #eedcd5;
+  --color-red-200: #e2c3b8;
+  --color-red-300: #d3a597;
+  --color-red-400: #c08877;
+  --color-red-500: #a96c5c;
+  --color-red-600: #8f5849;
+  --color-red-700: #74473b;
+  --color-red-800: #5a382f;
+  --color-red-900: #442b25;
+  --color-rose-50: #f6ece8;
+  --color-rose-100: #eedcd5;
+  --color-rose-200: #e2c3b8;
+  --color-rose-300: #d3a597;
+  --color-rose-400: #c08877;
+  --color-rose-500: #a96c5c;
+  --color-rose-600: #8f5849;
+  --color-rose-700: #74473b;
+  --color-rose-800: #5a382f;
+  --color-rose-900: #442b25;
+  --color-amber-50: #f7f1e4;
+  --color-amber-100: #efe4c8;
+  --color-amber-200: #e3d2a5;
+  --color-amber-300: #d3bd80;
+  --color-amber-400: #c0a65f;
+  --color-amber-500: #a68c48;
+  --color-amber-600: #86713b;
+  --color-amber-700: #685730;
+  --color-amber-800: #4e4326;
+  --color-amber-900: #3a321e;
+  --color-yellow-50: #f7f1e4;
+  --color-yellow-100: #efe4c8;
+  --color-yellow-200: #e3d2a5;
+  --color-yellow-300: #d3bd80;
+  --color-yellow-400: #c0a65f;
+  --color-yellow-500: #a68c48;
+  --color-yellow-600: #86713b;
+  --color-yellow-700: #685730;
+  --color-yellow-800: #4e4326;
+  --color-yellow-900: #3a321e;
+  --color-orange-50: #f7f1e4;
+  --color-orange-100: #efe4c8;
+  --color-orange-200: #e3d2a5;
+  --color-orange-300: #d3bd80;
+  --color-orange-400: #c0a65f;
+  --color-orange-500: #a68c48;
+  --color-orange-600: #86713b;
+  --color-orange-700: #685730;
+  --color-orange-800: #4e4326;
+  --color-orange-900: #3a321e;
+  --color-emerald-50: #eef2ee;
+  --color-emerald-100: #dde6df;
+  --color-emerald-200: #c3d1c6;
+  --color-emerald-300: #a5b9aa;
+  --color-emerald-400: #87a08e;
+  --color-emerald-500: #6b8573;
+  --color-emerald-600: #566d5d;
+  --color-emerald-700: #44574a;
+  --color-emerald-800: #35443a;
+  --color-emerald-900: #28332d;
+  --color-green-50: #eef2ee;
+  --color-green-100: #dde6df;
+  --color-green-200: #c3d1c6;
+  --color-green-300: #a5b9aa;
+  --color-green-400: #87a08e;
+  --color-green-500: #6b8573;
+  --color-green-600: #566d5d;
+  --color-green-700: #44574a;
+  --color-green-800: #35443a;
+  --color-green-900: #28332d;
+  --color-teal-50: #eef2ee;
+  --color-teal-100: #dde6df;
+  --color-teal-200: #c3d1c6;
+  --color-teal-300: #a5b9aa;
+  --color-teal-400: #87a08e;
+  --color-teal-500: #6b8573;
+  --color-teal-600: #566d5d;
+  --color-teal-700: #44574a;
+  --color-teal-800: #35443a;
+  --color-teal-900: #28332d;
+  --color-lime-50: #eef2ee;
+  --color-lime-100: #dde6df;
+  --color-lime-200: #c3d1c6;
+  --color-lime-300: #a5b9aa;
+  --color-lime-400: #87a08e;
+  --color-lime-500: #6b8573;
+  --color-lime-600: #566d5d;
+  --color-lime-700: #44574a;
+  --color-lime-800: #35443a;
+  --color-lime-900: #28332d;
+  --color-blue-50: #edf0f3;
+  --color-blue-100: #dbe1e8;
+  --color-blue-200: #bfc9d4;
+  --color-blue-300: #9eadbc;
+  --color-blue-400: #8092a5;
+  --color-blue-500: #66798d;
+  --color-blue-600: #526375;
+  --color-blue-700: #425060;
+  --color-blue-800: #333f4c;
+  --color-blue-900: #262f39;
+  --color-sky-50: #edf0f3;
+  --color-sky-100: #dbe1e8;
+  --color-sky-200: #bfc9d4;
+  --color-sky-300: #9eadbc;
+  --color-sky-400: #8092a5;
+  --color-sky-500: #66798d;
+  --color-sky-600: #526375;
+  --color-sky-700: #425060;
+  --color-sky-800: #333f4c;
+  --color-sky-900: #262f39;
+  --color-cyan-50: #edf0f3;
+  --color-cyan-100: #dbe1e8;
+  --color-cyan-200: #bfc9d4;
+  --color-cyan-300: #9eadbc;
+  --color-cyan-400: #8092a5;
+  --color-cyan-500: #66798d;
+  --color-cyan-600: #526375;
+  --color-cyan-700: #425060;
+  --color-cyan-800: #333f4c;
+  --color-cyan-900: #262f39;
+  --color-indigo-50: #edf0f3;
+  --color-indigo-100: #dbe1e8;
+  --color-indigo-200: #bfc9d4;
+  --color-indigo-300: #9eadbc;
+  --color-indigo-400: #8092a5;
+  --color-indigo-500: #66798d;
+  --color-indigo-600: #526375;
+  --color-indigo-700: #425060;
+  --color-indigo-800: #333f4c;
+  --color-indigo-900: #262f39;
+  --color-purple-50: #f1edf1;
+  --color-purple-100: #e3dce3;
+  --color-purple-200: #cdc0cd;
+  --color-purple-300: #b3a0b3;
+  --color-purple-400: #9a8499;
+  --color-purple-500: #826b81;
+  --color-purple-600: #6a566a;
+  --color-purple-700: #554455;
+  --color-purple-800: #413542;
+  --color-purple-900: #302831;
+  --color-violet-50: #f1edf1;
+  --color-violet-100: #e3dce3;
+  --color-violet-200: #cdc0cd;
+  --color-violet-300: #b3a0b3;
+  --color-violet-400: #9a8499;
+  --color-violet-500: #826b81;
+  --color-violet-600: #6a566a;
+  --color-violet-700: #554455;
+  --color-violet-800: #413542;
+  --color-violet-900: #302831;
+  --color-fuchsia-50: #f1edf1;
+  --color-fuchsia-100: #e3dce3;
+  --color-fuchsia-200: #cdc0cd;
+  --color-fuchsia-300: #b3a0b3;
+  --color-fuchsia-400: #9a8499;
+  --color-fuchsia-500: #826b81;
+  --color-fuchsia-600: #6a566a;
+  --color-fuchsia-700: #554455;
+  --color-fuchsia-800: #413542;
+  --color-fuchsia-900: #302831;
+  --color-pink-50: #f1edf1;
+  --color-pink-100: #e3dce3;
+  --color-pink-200: #cdc0cd;
+  --color-pink-300: #b3a0b3;
+  --color-pink-400: #9a8499;
+  --color-pink-500: #826b81;
+  --color-pink-600: #6a566a;
+  --color-pink-700: #554455;
+  --color-pink-800: #413542;
+  --color-pink-900: #302831;
+
+  /* Typography - Font Families */
+  --font-family-serif: var(--font-playfair);
+  --font-family-sans: var(--font-dm-sans);
+
+  /* Letter Spacing */
+  --tracking-body: 0.025em;
+  --tracking-tight: -0.01em;
+  --tracking-wide: 0.05em;
+}
+
+/* ============================================================
+   SHADCN/UI CSS VARIABLE MAPPING
+   ============================================================
+   Maps Legal Lens tokens to Shadcn/ui's expected CSS variable format.
+   These are semantic aliases for component theming.
+   ============================================================ */
+
+:root,
+.dark {
+  /* Background */
+  --background: var(--color-charcoal);
+  --foreground: var(--color-smoke);
+
+  /* Card */
+  --card: var(--color-jet);
+  --card-foreground: var(--color-smoke);
+
+  /* Popover */
+  --popover: var(--color-jet);
+  --popover-foreground: var(--color-smoke);
+
+  /* Primary */
+  --primary: var(--color-accent);
+  --primary-foreground: var(--color-charcoal);
+
+  /* Secondary */
+  --secondary: var(--color-stone);
+  --secondary-foreground: var(--color-smoke);
+
+  /* Muted */
+  --muted: var(--color-jet);
+  --muted-foreground: var(--color-stone);
+
+  /* Accent */
+  --accent: var(--color-accent-muted);
+  --accent-foreground: var(--color-charcoal);
+
+  /* Destructive */
+  --destructive: #a96c5c;
+  --destructive-foreground: var(--color-smoke);
+
+  /* Border / Input / Ring */
+  --border: rgba(230, 227, 220, 0.1);
+  --input: rgba(230, 227, 220, 0.1);
+  --ring: var(--color-accent);
+
+  /* Focus Ring - for accessibility */
+  --ring-offset: var(--color-charcoal);
+
+  /* Radius */
+  --radius: 0.5rem;
+}
+
+/* Override ReactFlow default node border within Command Center */
+.command-center-scope .react-flow__node {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Command Center scoped accent -- does not affect global Legal Lens palette */
+.command-center-scope {
+  /* Shared accent for non-agent UI (header, footer, file group nodes) */
+  --cc-accent: 180 65% 50%;
+  --cc-accent-glow: 180 65% 55%;
+
+  /* Per-agent color pairs: tint (subtle bg) + accent (bright text/glow) */
+  --cc-triage-tint: 42 40% 20%;
+  --cc-triage-accent: 42 70% 62%;
+
+  --cc-orchestrator-tint: 25 42% 20%;
+  --cc-orchestrator-accent: 25 70% 62%;
+
+
+  --cc-legal-tint: 215 32% 22%;
+  --cc-legal-accent: 215 60% 64%;
+
+  --cc-evidence-tint: 350 35% 20%;
+  --cc-evidence-accent: 350 60% 60%;
+
+  --cc-kg-tint: 270 35% 22%;
+  --cc-kg-accent: 270 60% 68%;
+
+  --cc-synthesis-tint: 45 35% 20%;
+  --cc-synthesis-accent: 45 60% 65%;
+}
+
+/* Light mode variant - Following LIGHT-MODE-REFERENCE.MD */
+.light {
+  /* Background & Foreground */
+  --background: var(--color-cream);
+  --foreground: var(--color-charcoal-light);
+
+  /* Card */
+  --card: #f6f4ef;
+  --card-foreground: var(--color-charcoal-light);
+
+  /* Popover */
+  --popover: #f6f4ef;
+  --popover-foreground: var(--color-charcoal-light);
+
+  /* Primary */
+  --primary: var(--color-accent-light);
+  --primary-foreground: var(--color-cream);
+
+  /* Secondary */
+  --secondary: var(--color-warm-gray);
+  --secondary-foreground: var(--color-charcoal-light);
+
+  /* Muted */
+  --muted: var(--color-warm-white);
+  --muted-foreground: var(--color-warm-gray);
+
+  /* Accent */
+  --accent: var(--color-accent-muted-light);
+  --accent-foreground: var(--color-cream);
+
+  /* Destructive */
+  --destructive: #a96c5c;
+  --destructive-foreground: #ffffff;
+
+  /* Border & Input */
+  --border: rgba(46, 50, 54, 0.12);
+  --input: rgba(46, 50, 54, 0.12);
+  --ring: var(--color-accent-light);
+
+  /* Focus Ring - for accessibility */
+  --ring-offset: var(--color-cream);
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================
+   Custom letter-spacing and font size utilities.
+   ============================================================ */
+
+@layer utilities {
+  /* Letter spacing presets */
+  .tracking-body {
+    letter-spacing: var(--tracking-body);
+  }
+
+  .tracking-wide {
+    letter-spacing: var(--tracking-wide);
+  }
+
+  /* Dotted canvas background pattern */
+  .bg-canvas {
+    background-image: radial-gradient(
+      circle,
+      rgba(138, 138, 130, 0.15) 1px,
+      transparent 1px
+    );
+    background-size: 26px 26px;
+  }
+
+  /* Light mode canvas pattern - visible dots on cream background */
+  .light .theme-scope .bg-canvas {
+    background-image: radial-gradient(
+      circle,
+      rgba(26, 24, 22, 0.06) 1px,
+      transparent 1px
+    );
+    background-size: 26px 26px;
+  }
+
+  /* Theme-aware color utilities */
+  .bg-warm-gray\/8 {
+    background-color: rgba(107, 101, 96, 0.08);
+  }
+
+  .bg-warm-gray\/12 {
+    background-color: rgba(107, 101, 96, 0.12);
+  }
+
+  .bg-warm-gray\/15 {
+    background-color: rgba(107, 101, 96, 0.15);
+  }
+
+  .bg-warm-gray\/25 {
+    background-color: rgba(107, 101, 96, 0.25);
+  }
+
+  .bg-white\/95 {
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+
+  .border-warm-gray\/12 {
+    border-color: rgba(107, 101, 96, 0.12);
+  }
+
+  .border-warm-gray\/15 {
+    border-color: rgba(107, 101, 96, 0.15);
+  }
+
+  .border-warm-gray\/20 {
+    border-color: rgba(107, 101, 96, 0.2);
+  }
+
+  .border-warm-gray\/25 {
+    border-color: rgba(107, 101, 96, 0.25);
+  }
+
+  .dark .bg-stone\/10 {
+    background-color: rgba(138, 138, 130, 0.1);
+  }
+
+  .dark .border-stone\/15 {
+    border-color: rgba(138, 138, 130, 0.15);
+  }
+
+  .dark .border-stone\/30 {
+    border-color: rgba(138, 138, 130, 0.3);
+  }
+
+  .dark .bg-charcoal {
+    background-color: var(--color-charcoal);
+  }
+}
+
+/* ============================================================
+   GLASS COMPONENT UTILITIES
+   ============================================================
+   Reusable glass panel styles for cards and navigation.
+   Subtle elegance - glass is felt more than seen.
+   ============================================================ */
+
+@layer components {
+  /* Light glass for cards and content panels */
+  .glass-panel {
+    background: var(--color-glass-light);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-glass);
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .glass-panel:hover {
+    box-shadow: var(--shadow-glass-hover);
+  }
+
+  /* Darker glass for navigation and overlays */
+  .glass-nav {
+    background: var(--color-glass-dark);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-glass);
+  }
+
+  /* --------------------------------------------------------
+     Liquid Glass Effect - Apple-inspired layered glass
+     --------------------------------------------------------
+     Layers: filter → overlay → specular → content
+     Creates depth through layered blur, tint, and highlights.
+     -------------------------------------------------------- */
+
+  .liquid-glass {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Layer 1: Backdrop blur with saturation boost */
+  .liquid-glass-filter {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    backdrop-filter: blur(24px) saturate(180%) brightness(1.1);
+    -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.1);
+  }
+
+  /* Layer 2: Semi-transparent tinted overlay */
+  .liquid-glass-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    background: linear-gradient(
+      180deg,
+      rgba(248, 247, 244, 0.08) 0%,
+      rgba(5, 5, 5, 0.7) 100%
+    );
+  }
+
+  /* Layer 3: Specular highlights (edge shine via inset shadows only) */
+  .liquid-glass-specular {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border-radius: inherit;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+  }
+
+  /* Layer 4: Content sits on top */
+  .liquid-glass-content {
+    position: relative;
+    z-index: 4;
+  }
+
+  /* --------------------------------------------------------
+     Liquid Glass Variants
+     --------------------------------------------------------
+     Different intensities for cards, modals, and subtle UI.
+     -------------------------------------------------------- */
+
+  /* Card glass - frosted liquid glass effect for content cards */
+  .liquid-glass-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    border: none;
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      0 2px 8px rgba(0, 0, 0, 0.15);
+    transition:
+      box-shadow 0.4s ease,
+      transform 0.4s ease;
+  }
+
+  .liquid-glass-card:hover {
+    box-shadow:
+      0 12px 48px rgba(0, 0, 0, 0.35),
+      0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .liquid-glass-card > .liquid-glass-filter {
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.15) contrast(1.05);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.15)
+      contrast(1.05);
+  }
+
+  .liquid-glass-card > .liquid-glass-overlay {
+    background:
+      radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        rgba(255, 255, 255, 0.15) 0%,
+        transparent 50%
+      ),
+      linear-gradient(
+        175deg,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(180, 180, 180, 0.06) 20%,
+        rgba(40, 40, 40, 0.88) 100%
+      );
+    filter: url(#liquid-glass-filter);
+  }
+
+  .liquid-glass-card > .liquid-glass-specular {
+    background: radial-gradient(
+      ellipse 100% 40% at 50% 0%,
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 60%
+    );
+    box-shadow: none;
+  }
+
+  /* Modal glass - more prominent for dialogs and overlays */
+  .liquid-glass-modal {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    border: none;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  }
+
+  .liquid-glass-modal > .liquid-glass-filter {
+    backdrop-filter: blur(32px) saturate(200%) brightness(1.15);
+    -webkit-backdrop-filter: blur(32px) saturate(200%) brightness(1.15);
+  }
+
+  .liquid-glass-modal > .liquid-glass-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(248, 247, 244, 0.06) 0%,
+      rgba(5, 5, 5, 0.85) 100%
+    );
+  }
+
+  .liquid-glass-modal > .liquid-glass-specular {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  /* Nav glass - for navigation bars */
+  .liquid-glass-nav {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .liquid-glass-nav > .liquid-glass-filter {
+    backdrop-filter: blur(24px) saturate(180%) brightness(1.1);
+    -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.1);
+  }
+
+  .liquid-glass-nav > .liquid-glass-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(248, 247, 244, 0.08) 0%,
+      rgba(5, 5, 5, 0.7) 100%
+    );
+  }
+
+  /* Subtle glass - minimal, for small UI elements like tooltips/dropdowns */
+  .liquid-glass-subtle {
+    position: relative;
+    background: rgba(248, 247, 244, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none;
+    border-radius: 8px;
+  }
+
+  /* Animated glass panels need will-change for performance */
+  .liquid-glass-animated {
+    will-change: transform;
+  }
+
+  /* --------------------------------------------------------
+     Light Mode Glass Variants (Scoped to .theme-scope)
+     --------------------------------------------------------
+     Following LIGHT-MODE-REFERENCE.MD specifications
+     -------------------------------------------------------- */
+
+  /* Light mode - glass panel */
+  .light .theme-scope .glass-panel {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 24px rgba(26, 24, 22, 0.06);
+  }
+
+  .light .theme-scope .glass-panel:hover {
+    box-shadow: 0 8px 32px rgba(26, 24, 22, 0.12);
+  }
+
+  /* Light mode - glass nav */
+  .light .theme-scope .glass-nav {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 24px rgba(26, 24, 22, 0.06);
+  }
+
+  /* Light mode - liquid glass card */
+  .light .theme-scope .liquid-glass-card {
+    box-shadow:
+      0 8px 32px rgba(26, 24, 22, 0.06),
+      0 2px 8px rgba(26, 24, 22, 0.04);
+  }
+
+  .light .theme-scope .liquid-glass-card:hover {
+    box-shadow:
+      0 12px 48px rgba(26, 24, 22, 0.1),
+      0 4px 12px rgba(26, 24, 22, 0.06);
+  }
+
+  .light .theme-scope .liquid-glass-card > .liquid-glass-filter {
+    backdrop-filter: blur(40px) saturate(180%) brightness(1.02) contrast(1.02);
+    -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.02)
+      contrast(1.02);
+  }
+
+  .light .theme-scope .liquid-glass-card > .liquid-glass-overlay {
+    background:
+      radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        rgba(255, 255, 255, 0.8) 0%,
+        transparent 50%
+      ),
+      linear-gradient(
+        175deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(250, 249, 247, 0.9) 20%,
+        rgba(245, 244, 239, 0.85) 100%
+      );
+  }
+
+  .light .theme-scope .liquid-glass-card > .liquid-glass-specular {
+    background: radial-gradient(
+      ellipse 100% 40% at 50% 0%,
+      rgba(255, 255, 255, 0.6) 0%,
+      transparent 60%
+    );
+    box-shadow: none;
+  }
+
+  /* Light mode - liquid glass modal */
+  .light .theme-scope .liquid-glass-modal {
+    box-shadow: 0 24px 64px rgba(26, 24, 22, 0.12);
+  }
+
+  .light .theme-scope .liquid-glass-modal > .liquid-glass-filter {
+    backdrop-filter: blur(32px) saturate(180%) brightness(1.02);
+    -webkit-backdrop-filter: blur(32px) saturate(180%) brightness(1.02);
+  }
+
+  .light .theme-scope .liquid-glass-modal > .liquid-glass-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(250, 249, 247, 0.9) 100%
+    );
+  }
+
+  .light .theme-scope .liquid-glass-modal > .liquid-glass-specular {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  /* Light mode - liquid glass nav */
+  .light .theme-scope .liquid-glass-nav > .liquid-glass-filter {
+    backdrop-filter: blur(24px) saturate(180%) brightness(1.02);
+    -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.02);
+  }
+
+  .light .theme-scope .liquid-glass-nav > .liquid-glass-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(250, 249, 247, 0.85) 100%
+    );
+  }
+
+  /* Light mode - subtle glass */
+  .light .theme-scope .liquid-glass-subtle {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(26, 24, 22, 0.04);
+  }
+}
+
+/* ============================================================
+   LIQUID GLASS BUTTON
+   ============================================================
+   Premium glass button with layered effect and glow.
+   Placed outside @layer for proper specificity.
+   ============================================================ */
+
+.liquid-glass-button {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(
+    180deg,
+    rgba(248, 247, 244, 0.12) 0%,
+    rgba(248, 247, 244, 0.06) 100%
+  );
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.2s ease,
+    background 0.3s ease;
+}
+
+.liquid-glass-button:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(248, 247, 244, 0.18) 0%,
+    rgba(248, 247, 244, 0.1) 100%
+  );
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    0 0 32px rgba(248, 247, 244, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.liquid-glass-button:active {
+  transform: scale(0.98);
+}
+
+/* Light mode variant - uses dark accent for visibility (scoped to app UI) */
+.light .theme-scope .liquid-glass-button {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(250, 249, 247, 0.8) 100%
+  );
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  color: var(--color-charcoal-light);
+  box-shadow:
+    0 4px 16px rgba(26, 24, 22, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.light .theme-scope .liquid-glass-button:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(250, 249, 247, 0.9) 100%
+  );
+  box-shadow:
+    0 8px 24px rgba(26, 24, 22, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* ============================================================
+   ACCESSIBILITY - REDUCED MOTION
+   ============================================================
+   Respect user preferences for reduced motion.
+   ============================================================ */
+
+/* ============================================================
+   SCAN OVERLAY ANIMATIONS
+   ============================================================
+   GPU-composited keyframes for the redaction scan effect.
+   Uses transform (not top/left) to avoid layout thrashing.
+   ============================================================ */
+
+@keyframes scan-sweep {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(calc(var(--scan-height) - 2px));
+  }
+}
+
+@keyframes scan-particle {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-60px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes scan-shimmer {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+
+/* Tailwind v4: Restore cursor-pointer for interactive elements */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-size: 18px;
+  line-height: 1.6;
+  letter-spacing: var(--tracking-body);
+}
+
+/* Theme-aware logo - darkens cream/white logo in light mode (scoped to app UI) */
+.light .theme-scope .logo-themed {
+  filter: brightness(0);
+}

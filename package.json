@@ -1,0 +1,24 @@
+{
+  "name": "legal-lens",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:frontend": "bun --cwd frontend dev",
+    "build:frontend": "bun --cwd frontend build",
+    "generate-types": "make generate-types",
+    "lint": "bun run lint:frontend && bun run lint:backend",
+    "lint:frontend": "bun --cwd frontend lint",
+    "lint:backend": "cd backend && uv run ruff check .",
+    "format": "bun run format:frontend && bun run format:backend",
+    "format:frontend": "bun --cwd frontend prettier --write .",
+    "format:backend": "cd backend && uv run ruff format ."
+  },
+  "devDependencies": {
+    "json-schema-to-typescript": "^15.0.4",
+    "lefthook": "^2.0.15",
+    "openapi-typescript": "^7.9.1"
+  }
+}

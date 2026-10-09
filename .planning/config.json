@@ -1,0 +1,12 @@
+{
+  "mode": "yolo",
+  "mode_exceptions": ["git_commits", "invasive_commands"],
+  "depth": "comprehensive",
+  "parallelization": "sequential",
+  "planning_notes": {
+    "phase_structure": "Each phase is modular, small enough for one session, builds on previous",
+    "parallel_work": "Phases designed for 2 devs to work without blocking/conflicting",
+    "documentation": "Each phase/ticket has dedicated file with full elaboration"
+  },
+  "created_at": "2026-01-18"
+}

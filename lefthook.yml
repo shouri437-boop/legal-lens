@@ -1,0 +1,38 @@
+# Lefthook configuration for git hooks
+# Source: https://github.com/evilmartians/lefthook
+
+pre-commit:
+  parallel: false
+  commands:
+    ruff-format:
+      glob: "backend/**/*.py"
+      root: "backend/"
+      run: uv run ruff format {staged_files}
+      stage_fixed: true
+    ruff-check:
+      glob: "backend/**/*.py"
+      root: "backend/"
+      run: uv run ruff check {staged_files}
+    eslint:
+      glob: "frontend/**/*.{js,ts,tsx}"
+      root: "frontend/"
+      run: npx eslint {staged_files}
+    prettier:
+      glob: "frontend/**/*.{js,ts,tsx,json,css,md}"
+      root: "frontend/"
+      run: npx prettier --check {staged_files}
+
+pre-push:
+  commands:
+    backend-format-check:
+      run: cd backend && uv run ruff format --check .
+    backend-lint-check:
+      run: cd backend && uv run ruff check .
+    generate-types:
+      run: |
+        make generate-types
+        if [ -n "$(git status --porcelain packages/types/)" ]; then
+          echo "Type generation produced changes. Run 'make generate-types' and commit the results before pushing."
+          git diff -- packages/types/
+          exit 1
+        fi

@@ -1,0 +1,37 @@
+# ABOUTME: Excludes files from the frontend Docker build context (context: . in CI).
+# ABOUTME: The backend Dockerfile uses context: ./backend, so this file does not affect it.
+
+# Backend (has its own Docker context at ./backend)
+backend/
+
+# Infrastructure and docs
+terraform/
+DEVELOPMENT_DOCS/
+DOCS/
+.planning/
+
+# VCS and IDE
+.git/
+.claude/
+.kiro/
+.vscode/
+
+# Secrets (must never enter Docker context)
+.env
+.env.*
+!.env.example
+
+# Dependencies (reinstalled inside Docker)
+node_modules/
+frontend/node_modules/
+frontend/.next/
+
+# Misc
+.DS_Store
+LICENSE
+README.md
+GUIDE.md
+CLAUDE.md
+Makefile
+lefthook.yml
+docker-compose.yml
